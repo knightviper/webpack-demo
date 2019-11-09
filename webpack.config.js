@@ -18,6 +18,8 @@ const commonConfig = merge([
             }),
         ],
     },
+    parts.loadFONTS(),
+    parts.loadJavaScript({ include: PATHS.app }),
 ]);
 
 const productionConfig = merge([

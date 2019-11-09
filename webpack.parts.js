@@ -95,10 +95,44 @@ const loadImages = ({ include, exclude, options } = {}) => ({
     },
 });
 
+const loadFONTS = ({ include, exclude } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                include,
+                exclude,
+                use: {
+                    loader: "url-loader",
+                    options: {
+                        limit: 50000,
+                        name: "./fonts/[name].[ext]",
+                    },
+                },
+            },
+        ],
+    },
+});
+
+const loadJavaScript = ({ include, exclude } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                include,
+                exclude,
+                use: "babel-loader",
+            },
+        ],
+    },
+});
+
 module.exports = {
     devServer,
     loadCSS,
     extractCSS,
     purifyCSS,
     loadImages,
+    loadFONTS,
+    loadJavaScript,
 }
