@@ -17,6 +17,12 @@ const loadCSS = ({ include, exclude } = {}) => ({
                 exclude,
                 use: ["style-loader", "css-loader"],
             },
+            {
+                test: /\.s[ac]ss$/,
+                include,
+                exclude,
+                use: ["style-loader", "css-loader", "sass-loader"]
+            }
         ],
     },
 });
