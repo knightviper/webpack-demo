@@ -75,9 +75,30 @@ const autoprefix = () => ({
     },
 });
 
+const loadImages = ({ include, exclude, options } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                include,
+                exclude,
+                use: [
+                    {
+                        loader: "url-loader",
+                        options,
+                    },{
+                        loader: "image-webpack-loader",
+                    }
+                ],
+            },
+        ],
+    },
+});
+
 module.exports = {
     devServer,
     loadCSS,
     extractCSS,
     purifyCSS,
+    loadImages,
 }
