@@ -1,4 +1,4 @@
-exports.devServer = ({ host, port } = {}) => ({
+const devServer = ({ host, port } = {}) => ({
     devServer: {
         stats: "errors-only", //Displays only errors to reduce the amount of output
         host, //Defaults to localhost
@@ -7,3 +7,21 @@ exports.devServer = ({ host, port } = {}) => ({
         overlay: true,
     },
 });
+
+const loadCSS = ({ include, exclude } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                include,
+                exclude,
+                use: ["style-loader", "css-loader"],
+            },
+        ],
+    },
+});
+
+module.exports = {
+    devServer,
+    loadCSS,
+}
