@@ -48,6 +48,7 @@ const extractCSS = ({ include, exclude } = {}) => {
                             },
                             'css-loader',
                             'sass-loader',
+                            autoprefix(),
                         ],
                 },
             ],
@@ -65,6 +66,13 @@ const purifyCSS = ({ paths }) => ({
             },
         }),
     ]
+});
+
+const autoprefix = () => ({
+    loader: "postcss-loader",
+    options: {
+        plugins: () => [require("autoprefixer")],
+    },
 });
 
 module.exports = {
