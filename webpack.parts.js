@@ -127,6 +127,10 @@ const loadJavaScript = ({ include, exclude } = {}) => ({
     },
 });
 
+const generateSourceMaps = ({ type }) => ({
+    devtool: type,
+});
+
 module.exports = {
     devServer,
     loadCSS,
@@ -135,4 +139,5 @@ module.exports = {
     loadImages,
     loadFONTS,
     loadJavaScript,
+    generateSourceMaps,
 }
