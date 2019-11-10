@@ -6,5 +6,14 @@ export default (text = "Hello World!! Lets learn webpack") => {
     element.innerHTML = text;
     element.className = "pure-button";
 
+    element.onclick = () =>
+        import("./lazy")
+            .then(lazy => {
+                element.textContent = lazy.default;
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
     return element;
 }
