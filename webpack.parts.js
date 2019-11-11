@@ -3,6 +3,9 @@ const PurifyCSSPlugin = require('purifycss-webpack');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require('webpack');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssnano = require('cssnano');
 
 const devServer = ({ host, port } = {}) => ({
     devServer: {
@@ -146,6 +149,22 @@ const attachRevision = () => ({
     ],
 });
 
+const minifyJavascript = () => ({
+    optimization: {
+        minimizer: [new TerserPlugin({ sourceMap: true })],
+    },
+});
+
+const minifyCSS = ({ options }) => ({
+    plugins: [
+        new OptimizeCSSAssetsPlugin({
+            cssProcessor: cssnano,
+            cssProcessorOptions: options,
+            canPrint: false,
+        }),
+    ],
+});
+
 module.exports = {
     devServer,
     loadCSS,
@@ -157,4 +176,6 @@ module.exports = {
     generateSourceMaps,
     clean,
     attachRevision,
+    minifyJavascript,
+    minifyCSS,
 }

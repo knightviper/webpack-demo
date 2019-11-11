@@ -6,6 +6,7 @@ const glob = require('glob');
 
 const PATHS = {
     app: path.join(__dirname, "src"),
+    build: path.join(__dirname, "dist"),
 };
 
 const parts = require('./webpack.parts');
@@ -47,8 +48,17 @@ const productionConfig = merge([
             },
         },
     },
-    parts.clean(),
+    parts.clean(PATHS.build),
     parts.attachRevision(),
+    parts.minifyJavascript(),
+    parts.minifyCSS({
+        options: {
+            discardComments: {
+                removeAll: true,
+            },
+            safe: true,
+        },
+    }),
 ]);
 
 const developmentConfig = merge([
