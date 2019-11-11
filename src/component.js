@@ -1,7 +1,7 @@
 import 'purecss';
 import './test.scss';
 
-export default (text = "Hello World!! Lets learn webpack") => {
+export default (text = "HELLO") => {
     const element = document.createElement("div");
     element.innerHTML = text;
     element.className = "pure-button";

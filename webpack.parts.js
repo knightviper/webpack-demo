@@ -165,6 +165,15 @@ const minifyCSS = ({ options }) => ({
     ],
 });
 
+const setFreeVariable = (key, value) => {
+    const env = {};
+    env[key] = JSON.stringify(value);
+
+    return {
+        plugins: [new webpack.DefinePlugin(env)],
+    };
+};
+
 module.exports = {
     devServer,
     loadCSS,
@@ -178,4 +187,5 @@ module.exports = {
     attachRevision,
     minifyJavascript,
     minifyCSS,
+    setFreeVariable,
 }

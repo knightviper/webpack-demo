@@ -21,6 +21,7 @@ const commonConfig = merge([
     },
     parts.loadFONTS(),
     parts.loadJavaScript({ include: PATHS.app }),
+    parts.setFreeVariable("HELLO", "hello from config"),
 ]);
 
 const productionConfig = merge([
