@@ -1,5 +1,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require('webpack');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
 const devServer = ({ host, port } = {}) => ({
     devServer: {
@@ -131,6 +134,18 @@ const generateSourceMaps = ({ type }) => ({
     devtool: type,
 });
 
+const clean = (path) => ({
+    plugins: [new CleanWebpackPlugin()],
+});
+
+const attachRevision = () => ({
+    plugins: [
+        new webpack.BannerPlugin({
+            banner: new GitRevisionPlugin().version(),
+        }),
+    ],
+});
+
 module.exports = {
     devServer,
     loadCSS,
@@ -140,4 +155,6 @@ module.exports = {
     loadFONTS,
     loadJavaScript,
     generateSourceMaps,
+    clean,
+    attachRevision,
 }
