@@ -3,5 +3,7 @@ import 'react-dom';
 import 'purecss';
 import component from './component';
 import './main.css';
+import { bake } from './shake';
 
 document.body.appendChild(component());
+bake();
