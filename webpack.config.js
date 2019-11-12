@@ -53,6 +53,9 @@ const productionConfig = merge([
                     },
                 },
             },
+            runtimeChunk: {
+                name: "manifest",
+            },
         },
     },
     parts.clean(PATHS.build),
