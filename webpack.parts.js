@@ -38,7 +38,7 @@ const loadCSS = ({ include, exclude } = {}) => ({
 
 const extractCSS = ({ include, exclude } = {}) => {
     const plugin = new MiniCssExtractPlugin({
-        filename: "[name].css", 
+        filename: "[name].[contenthash:4].css", 
     });
 
     return {

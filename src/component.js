@@ -1,7 +1,7 @@
 import 'purecss';
 import './test.scss';
 
-export default (text = "HELLO") => {
+export default (text = "HELLO WORLD") => {
     const element = document.createElement("div");
     element.innerHTML = text;
     element.className = "pure-button";
