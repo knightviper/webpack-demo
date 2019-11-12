@@ -6,6 +6,7 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const devServer = ({ host, port } = {}) => ({
     devServer: {
@@ -174,6 +175,12 @@ const setFreeVariable = (key, value) => {
     };
 };
 
+const analyzeWebpackBundle = () => ({
+    plugins: [
+        new BundleAnalyzerPlugin()
+    ],
+})
+
 module.exports = {
     devServer,
     loadCSS,
@@ -188,4 +195,5 @@ module.exports = {
     minifyJavascript,
     minifyCSS,
     setFreeVariable,
+    analyzeWebpackBundle,
 }

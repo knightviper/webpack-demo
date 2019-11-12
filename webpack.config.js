@@ -69,6 +69,7 @@ const productionConfig = merge([
             safe: true,
         },
     }),
+    parts.analyzeWebpackBundle(),
 ]);
 
 const developmentConfig = merge([
